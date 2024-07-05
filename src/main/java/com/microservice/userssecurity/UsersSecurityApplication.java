@@ -32,18 +32,15 @@ public class UsersSecurityApplication {
 
 		setEnvironmentVariables(getEnv);
 
-		// Opcionalmente, puedes imprimir algunas variables para verificar
-		System.out.println("DB URL: " + System.getProperty("spring.datasource.url"));
-		System.out.println("Eureka URL: " + System.getProperty("eureka.client.serviceUrl.defaultZone"));
 
 		SpringApplication.run(UsersSecurityApplication.class, args);
 	}
 
 	private static void setEnvironmentVariables(Function<String, String> getEnv) {
 		// Configuración de la base de datos
-		System.setProperty("spring.datasource.url", getEnv.apply("DB_URL"));
-		System.setProperty("spring.datasource.username", getEnv.apply("DB_USERNAME"));
-		System.setProperty("spring.datasource.password", getEnv.apply("DB_PASSWORD"));
+		System.setProperty("spring.datasource.url", getEnv.apply("DB_USERS_URL"));
+		System.setProperty("spring.datasource.username", getEnv.apply("DB_USERS_USERNAME"));
+		System.setProperty("spring.datasource.password", getEnv.apply("DB_USERS_PASSWORD"));
 
 		// Configuración de Eureka y servicios
 		System.setProperty("eureka.client.serviceUrl.defaultZone", getEnv.apply("EUREKA_URL"));
