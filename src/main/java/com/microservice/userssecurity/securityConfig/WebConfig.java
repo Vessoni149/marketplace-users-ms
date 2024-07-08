@@ -23,6 +23,8 @@ public class WebConfig {
         config.setAllowCredentials(true);   //el front enviara credenciales que deben ser aceptadas.
         config.addAllowedOrigin("https://marketplace-pink-eta.vercel.app/");
         config.addAllowedOrigin("https://marketplace-mt4ruuaeu-vessoni149s-projects.vercel.app/");
+        config.addAllowedOrigin("https://marketplace-vessoni149s-projects.vercel.app");
+        config.addAllowedOrigin("https://marketplace-vessoni149-vessoni149s-projects.vercel.app");
         config.addAllowedOrigin("https://api.stripe.com");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
