@@ -48,6 +48,7 @@ public class SecurityConfig {
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
         return httpSecurity
                 .authorizeHttpRequests(a -> a
+                        .requestMatchers("/").permitAll()
                         .requestMatchers(HttpMethod.POST,"/createUserEntity").permitAll()
                         .requestMatchers("/v1/csrf").permitAll()
                         .requestMatchers("/login").permitAll()
