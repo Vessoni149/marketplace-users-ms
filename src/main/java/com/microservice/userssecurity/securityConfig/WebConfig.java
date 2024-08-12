@@ -26,6 +26,7 @@ public class WebConfig {
         config.addAllowedOrigin("https://marketplace-vessoni149s-projects.vercel.app");
         config.addAllowedOrigin("https://marketplace-vessoni149-vessoni149s-projects.vercel.app");
         config.addAllowedOrigin("https://api.stripe.com");
+        config.addAllowedOrigin("https://marketplace-hgw3sm957-vessoni149s-projects.vercel.app");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,
