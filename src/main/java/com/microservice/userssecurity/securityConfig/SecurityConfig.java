@@ -80,12 +80,12 @@ public class SecurityConfig {
 
     }
 
-    @Bean
+    /*@Bean
     public CookieCsrfTokenRepository cookieCsrfTokenRepository() {
         CookieCsrfTokenRepository repository = CookieCsrfTokenRepository.withHttpOnlyFalse();
         repository.setHeaderName("CSRF_TOKEN");// Nombre personalizado para el token CSRF
         return repository;
-    }
+    }*/
 
     @Bean
     PasswordEncoder passwordEncoder(){
