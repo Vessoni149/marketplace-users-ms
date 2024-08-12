@@ -64,7 +64,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> {
-                    csrf.csrfTokenRepository(cookieCsrfTokenRepository());
+                    csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
                 })
 
                 .exceptionHandling(exceptionHandling ->
