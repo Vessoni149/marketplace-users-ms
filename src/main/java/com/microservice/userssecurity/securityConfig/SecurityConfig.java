@@ -63,10 +63,10 @@ public class SecurityConfig {
                         .requestMatchers("/create-payment-intent").hasAnyRole("USER_SELLER","USER_BUYER", "ADMIN")
                         .anyRequest().authenticated()
                 )
-                /*.csrf(csrf -> {
+                .csrf(csrf -> {
                     csrf.csrfTokenRepository(cookieCsrfTokenRepository());
-                })*/
-                .csrf(csrf -> csrf.disable())
+                })
+                /*.csrf(csrf -> csrf.disable())*/
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(userAuthenticationEntryPoint)
                 )
