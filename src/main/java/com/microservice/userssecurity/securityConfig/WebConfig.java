@@ -33,6 +33,7 @@ public class WebConfig {
                 HttpHeaders.CONTENT_TYPE,
                 "X-Xsrf-Token",
                 "CSRF_TOKEN",
+                "_csrf",
                 HttpHeaders.ORIGIN,
                 HttpHeaders.ACCEPT));
         config.setAllowedMethods(Arrays.asList(

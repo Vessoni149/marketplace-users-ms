@@ -23,6 +23,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -47,11 +48,13 @@ public class SecurityConfig {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtUtils, userRepo);
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        requestHandler.setCsrfRequestAttributeName("_csrf");
         return httpSecurity
                 .authorizeHttpRequests(a -> a
                         .requestMatchers("/").permitAll()
                         .requestMatchers(HttpMethod.POST,"/createUserEntity").permitAll()
-                        .requestMatchers("/v1/csrf").permitAll()
+                        .requestMatchers("/api/csrf-token").permitAll()
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/get/{id}").permitAll()
@@ -64,9 +67,10 @@ public class SecurityConfig {
                         .requestMatchers("/create-payment-intent").hasAnyRole("USER_SELLER","USER_BUYER", "ADMIN")
                         .anyRequest().authenticated()
                 )
-                .csrf(csrf -> {
-                    csrf.csrfTokenRepository(cookieCsrfTokenRepository());
-                })
+                .csrf(csrf -> csrf
+                        .csrfTokenRequestHandler(requestHandler)
+                        .ignoringRequestMatchers("/api/csrf-token", "/createUserEntity", "/login")
+                )
 
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(userAuthenticationEntryPoint)
@@ -81,15 +85,7 @@ public class SecurityConfig {
 
     }
 
-    @Bean
-    public CsrfTokenRepository cookieCsrfTokenRepository() {
-        CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
-        tokenRepository.setSecure(true);  // Marca la cookie como Secure
-        tokenRepository.setCookieHttpOnly(true);  // Marca la cookie como HttpOnly
-        tokenRepository.setCookiePath("/");  // Establece el path de la cookie
-        tokenRepository.setCookieName("XSRF-TOKEN");  // Nombre de la cookie (puedes cambiarlo si lo prefieres)
-        return tokenRepository;
-    }
+
 
     @Bean
     PasswordEncoder passwordEncoder(){
