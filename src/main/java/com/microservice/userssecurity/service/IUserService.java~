@@ -23,7 +23,7 @@ public interface IUserService {
     public List<ProductDto> getCartProducts(int userId);
 
     public Map<String, Object> addSellerRole(int userId);
-
+    
 
     public Optional<UserEntity> findByEmail(String email);
 

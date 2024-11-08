@@ -148,7 +148,22 @@ public class UserService implements IUserService{
         }
     }
 
+    @Override
+    public void loginUser(String email, String password) {
+        // Buscar al usuario por email en la base de datos
+        Optional<UserEntity> userEntityOptional = userRepo.findByEmail(email);
 
+        // Verificar si el usuario existe
+        if (userEntityOptional.isPresent()) {
+            UserEntity userEntity = userEntityOptional.get();
+
+            // Verificar si la contraseña ingresada coincide con la contraseña encriptada del usuario
+            if (passwordEncoder.matches(password, userEntity.getPassword())) {
+                // Si las credenciales son válidas, generar el token JWT
+                String token = jwtUtils.generateAccessToken(userEntity);
+            }
+        }
+    }
 
     @Override
     public Optional<UserEntity> findByEmail(String email) {

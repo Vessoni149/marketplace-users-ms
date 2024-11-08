@@ -41,10 +41,7 @@ public class UserController {
 
 
 
-    @PostMapping("/login")
-    public void loginUser(@RequestBody LoginDto loginDto) {
-        userServ.loginUser(loginDto.getEmail(), loginDto.getPassword());
-    }
+
 
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id){
