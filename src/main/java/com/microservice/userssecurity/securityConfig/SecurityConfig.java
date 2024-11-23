@@ -63,10 +63,8 @@ public class SecurityConfig {
                         .requestMatchers("/create-payment-intent").hasAnyRole("USER_SELLER","USER_BUYER", "ADMIN")
                         .anyRequest().authenticated()
                 )
-                .csrf(csrf -> {
-                    csrf.csrfTokenRepository(cookieCsrfTokenRepository());
-                })
-                /*.csrf(csrf -> csrf.disable())*/
+
+                .csrf(csrf -> csrf.disable())
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(userAuthenticationEntryPoint)
                 )
@@ -80,12 +78,6 @@ public class SecurityConfig {
 
     }
 
-    @Bean
-    public CookieCsrfTokenRepository cookieCsrfTokenRepository() {
-        CookieCsrfTokenRepository repository = CookieCsrfTokenRepository.withHttpOnlyFalse();
-        repository.setHeaderName("CSRF_TOKEN");// Nombre personalizado para el token CSRF
-        return repository;
-    }
 
     @Bean
     PasswordEncoder passwordEncoder(){
