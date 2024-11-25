@@ -20,13 +20,9 @@ public class WebConfig {
     public CorsFilter corsFilter(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);   //el front enviara credenciales que deben ser aceptadas.
-        config.addAllowedOrigin("https://marketplace-pink-eta.vercel.app");
-        config.addAllowedOrigin("https://marketplace-mt4ruuaeu-vessoni149s-projects.vercel.app/");
-        config.addAllowedOrigin("https://marketplace-vessoni149s-projects.vercel.app");
-        config.addAllowedOrigin("https://marketplace-vessoni149-vessoni149s-projects.vercel.app");
+        config.setAllowCredentials(true);   //el front enviara credenciales que deben ser aceptadas.;
         config.addAllowedOrigin("https://api.stripe.com");
-        config.addAllowedOrigin("https://marketplace-hgw3sm957-vessoni149s-projects.vercel.app");
+        config.addAllowedOrigin("https://marketplace-qp7hjybwl-vessoni149s-projects.vercel.app/");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,
