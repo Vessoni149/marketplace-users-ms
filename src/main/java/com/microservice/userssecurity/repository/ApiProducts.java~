@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-@FeignClient(name="ms-products", url="https://marketplace-products-ms.onrender.com")
+@FeignClient(name="ms-products", url="")
 public interface ApiProducts {
     @GetMapping("/products/get/{code}")
     public ProductDto getProduct(@PathVariable int code);
