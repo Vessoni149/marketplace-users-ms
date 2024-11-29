@@ -22,6 +22,7 @@ public class WebConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.addAllowedOrigin("https://vess-commerse.firebaseapp.com/");
+        config.addAllowedOrigin("https://marketplace-vess-vessoni149s-projects.vercel.app/");
         config.addAllowedOrigin("https://api.stripe.com");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
