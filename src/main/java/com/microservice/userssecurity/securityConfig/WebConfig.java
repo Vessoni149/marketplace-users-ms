@@ -22,7 +22,6 @@ public class WebConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);   //el front enviara credenciales que deben ser aceptadas.;
         config.addAllowedOrigin("https://api.stripe.com");
-        config.addAllowedOrigin("https://marketplace-qp7hjybwl-vessoni149s-projects.vercel.app/");
         config.addAllowedOrigin("http://localhost:3000");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
